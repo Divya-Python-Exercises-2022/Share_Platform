@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'platform_user',
     'products',
+    'book_products',
     'rest_framework'
 ]
 

@@ -35,7 +35,7 @@ class MyProductAPIViewSet(LoginRequiredMixin, APIView):
         serializer1 = ProductSerializer(data=request.data)
         #serializer2 = AddressSerializer(address, data=request.data)
 
-        print(address)
+        print(f'Filtered address:{address}')
         if serializer1.is_valid():
             name = serializer1.data['name']
             about = serializer1.data['about']

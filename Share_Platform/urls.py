@@ -17,8 +17,10 @@ from django.contrib import admin
 from django.urls import path, include
 from rest_framework.routers import DefaultRouter
 
-from platform_user.views import PlatformUserAPIViewSet, AddressAPIViewSet#, LoginAPIViewSet
-
+from book_products.views import BookProductAPIViewSet, BookProductDetailsAPIViewSet
+from platform_user.views import PlatformUserAPIViewSet, AddressAPIViewSet, AddressDetailsAPIView, \
+    PlatformUserDetailsAPIView  # , LoginAPIViewSet
+from products.views import MyProductAPIViewSet, AllProductAPIViewSet
 router = DefaultRouter()
 #router.register(r'register',PlatformUserAPIViewSet)
 #router.register(r'add_addresses',AddressAPIViewSet)
@@ -26,9 +28,15 @@ router = DefaultRouter()
 
 urlpatterns = [
     path('api-auth',include('rest_framework.urls')),
-    path('api/v1/',include(router.urls)),
+    #path('api/v1/',include(router.urls)),
     path('register/',PlatformUserAPIViewSet.as_view()),
-    path('add_addresses/', AddressAPIViewSet.as_view()),
+    path('my_details/',PlatformUserDetailsAPIView.as_view()),
+    path('my_addresses/', AddressAPIViewSet.as_view()),
+    path('my_addresses/<int:address_id>',AddressDetailsAPIView.as_view()),
+    path('my_products/',MyProductAPIViewSet.as_view()),
+    path('list_all_products/', AllProductAPIViewSet.as_view()),
+    path('book_products/',BookProductAPIViewSet.as_view()),
+    path('book_products/<int:booking_id>',BookProductDetailsAPIViewSet.as_view()),
     #path('login/', LoginAPIViewSet.as_view()),
     path('admin/', admin.site.urls),
 ]
